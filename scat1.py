@@ -5,6 +5,12 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 
 
+def findZero(fn, l=-1, r=1, b=-1, t = 1, aeps = 1e-12, beps = 1e-11):
+  """
+  Find zero of  given function in given window. 
+  """
+  pass 
+
 def ampD(E,a=1,u0=20):
   """
   compute scattering amplitude for giving energy and set width and depth of the well
@@ -48,3 +54,10 @@ def plotAmp(l=-1, r=1, b=-1,t=1,Nx=100,Ny=100,a=1,u0=20):
   ax.set_ylabel(r'$\mathrm{Im}(E)$')
   ax.legend()
    
+
+def psi(x):
+  """
+  Plot wave function.
+  """
+  pass
+  
