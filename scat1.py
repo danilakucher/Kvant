@@ -5,11 +5,37 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
 
 
-def findZero(fn, l=-1, r=1, b=-1, t = 1, aeps = 1e-12, beps = 1e-11):
+def findZero(fn, l=-1, r=1, b=-1, t = 1, eps = 1e-12):
   """
   Find zero of  given function in given window. 
   """
-  pass 
+  
+  N = 10
+  dx = (r-l)/(N-1)
+  dy = (t-b)/(N-1)
+  while dx > eps or dy > eps:
+    x = np.linspace(l, r, N)
+    y = np.linspace(b, t, N)
+    XX,YY = np.meshgrid(x,y)
+    W = fn(XX,YY)
+    mn = np.min(W)
+    ij = (W == mn)
+    x0,y0 = XX[ij],YY[ij]
+    x0,y0 = x0[0],y0[0] 
+
+    if mn < eps:
+      return np.array([x0,y0])
+
+    l = x0 - 0.5*dx
+    r = x0 + 0.5*dx
+    b = y0 - 0.5*dy
+    t = y0 + 0.5*dy  
+    dx = (r-l)/(N-1)
+    dy = (t-b)/(N-1)
+
+  print(f"[ERROR] function seems doesn't have zero in given range")
+  return(0,0) 
+    
 
 def ampD(E,a=1,u0=20):
   """
